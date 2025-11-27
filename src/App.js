@@ -291,19 +291,44 @@ export default function StudyPlanner() {
 
   const currentCooked = calculateCookedLevel();
 
+  const getBackgroundColor = () => {
+    if (!currentCooked) return 'from-red-100 to-red-200';
+    if (currentCooked.level.includes('Chilling')) return 'from-green-100 to-green-200';
+    if (currentCooked.level.includes('Slightly Toasted')) return 'from-yellow-100 to-yellow-200';
+    if (currentCooked.level.includes('Medium Cooked')) return 'from-orange-200 to-orange-300';
+    if (currentCooked.level.includes('Well Done')) return 'from-red-300 to-red-400';
+    if (currentCooked.level.includes('ABSOLUTELY COOKED')) return 'from-red-700 to-red-800';
+    return 'from-red-100 to-red-200';
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 to-red-100 p-6">
+    <div className={`min-h-screen bg-gradient-to-br ${getBackgroundColor()} p-6 relative overflow-hidden`}>
+      <div className="absolute inset-0 opacity-10 pointer-events-none -z-10">
+        {Array.from({length: 100}).map((_, i) => (
+          <img
+            key={i}
+            src="/12-125959_png.png"
+            alt="flame"
+            className="absolute w-4 h-4 animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`
+            }}
+          />
+        ))}
+      </div>
       <div className="max-w-full mx-auto px-4">
         <div className="bg-white rounded-lg shadow-lg p-10">
-          <div className="flex items-center gap-3 mb-6">
-            <img src="/cooked.jpg" alt="Cooked" className="w-16 h-16 object-cover rounded" />
+          <div className="flex items-start gap-3 mb-6">
+            <img src="/cooked.jpg" alt="Cooked" className="w-12 h-12 object-cover rounded -mt-2.5" />
             <div>
               <h1 className="text-xl font-bold text-gray-800">SURVIVING UBC 101:</h1>
-              <h2 className="text-6xl md:text-8xl font-black text-orange-500 tracking-wider">{typedText}<span className="animate-pulse">|</span></h2>
+              <h2 className="text-6xl md:text-8xl font-black text-orange-500 tracking-tight">{typedText}<span className="animate-pulse font-thin">|</span></h2>
             </div>
           </div>
 
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 mt-12">
             <p className="text-sm text-red-800">
               Add assignments → Get study schedule → Find out how screwed you are 🔥
             </p>
@@ -459,6 +484,7 @@ export default function StudyPlanner() {
 
         <div className="mt-6 text-center text-sm text-gray-600">
           <p>Made by students, for students. Import to any calendar app.</p>
+          <img src="/cooked.jpg" alt="Cooked" className="w-12 h-12 object-cover rounded mx-auto mt-4" />
         </div>
       </div>
     </div>
