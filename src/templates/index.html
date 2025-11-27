@@ -1,0 +1,88 @@
+<div class="grid">
+  <!-- left: form -->
+  <div class="card">
+    <div class="add-banner">add your assingmnet sbelow</div>
+
+    <form id="assignment-form" style="margin-top:14px;">
+      <div class="form-group">
+        <label for="title">Assignment title</label>
+        <input id="title" name="title" type="text" placeholder="e.g., Lab report 3" />
+      </div>
+
+      <div class="form-group">
+        <label for="class">Class</label>
+        <select id="class" name="class">
+          <option>CS 101</option>
+          <option>Math 201</option>
+          <option>History 110</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="due">Due date</label>
+        <input id="due" name="due" type="date" />
+      </div>
+
+      <div class="form-group">
+        <label for="weight">Weighting (%)</label>
+        <input id="weight" name="weight" type="number" min="0" max="100" step="1" />
+      </div>
+
+      <div class="form-group upload-area">
+        <div class="small">Upload supporting file (optional)</div>
+        <input type="file" id="file" name="file" style="opacity:0;position:absolute;left:-9999px;" />
+        <button type="button" class="btn-ghost" onclick="document.getElementById('file').click()" style="color:var(--white); background:transparent; border:1px solid rgba(255,255,255,0.12)">Choose</button>
+      </div>
+
+      <div style="display:flex; gap:10px; margin-top:8px;">
+        <button class="btn" type="button" id="add-assignment">Add assignment</button>
+        <button class="btn-ghost" type="button" id="generate-plan">Generate plan</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- right: assignments + plan -->
+  <div>
+    <div class="card" style="margin-bottom:12px;">
+      <div class="flex" style="justify-content:space-between">
+        <div>
+          <div class="small">Upcoming</div>
+          <h3 style="margin:6px 0 0 0">Assignments</h3>
+        </div>
+        <div class="cooked cooked-low" id="cooked-badge">Not cooked</div>
+      </div>
+
+      <div class="assignments" id="assignments-list" style="margin-top:12px;">
+        <!-- populated by JS -->
+        <div class="assignment">
+          <div class="meta">
+            <div>
+              <div style="font-weight:700">Example: Lab report 3</div>
+              <div class="small">CS 101 • due 2025-12-01</div>
+            </div>
+          </div>
+          <div class="flex">
+            <div class="tag tag-class">CS 101</div>
+            <div class="tag tag-weight">20%</div>
+            <div class="tag tag-date">Dec 1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="small">Study Plan</div>
+      <h3 style="margin:6px 0 12px 0">Your Schedule</h3>
+      <div class="plan" id="plan-days">
+        <!-- populated by JS -->
+        <div class="day">
+          <div class="date">Nov 26</div>
+          <div style="flex:1">
+            <div style="font-weight:700">2 hours — CS 101: Lab report 3</div>
+            <div class="small">Focus: data analysis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

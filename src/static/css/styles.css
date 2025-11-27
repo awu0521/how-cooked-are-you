@@ -1,0 +1,219 @@
+:root {
+    --bg: #e7d7c1;     /* background of the entire app */
+    --muted: #a78a7f;  /* "add your assingmnet sbelow" (white font) */
+    --upload: #735751; /* upload file area */
+    --accent: #bf4342; /* selecting things from the user (white font) */
+    --dark: #8c1c13;   /* anything else */
+    --white: #ffffff;
+    --glass: rgba(255,255,255,0.6);
+    --soft-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    --rounded: 12px;
+    --pad: 18px;
+}
+
+* { box-sizing: border-box; }
+html,body { height: 100%; margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+body {
+  background: linear-gradient(180deg, var(--bg) 0%, #eadfcf 100%);
+  color: var(--dark);
+  min-height: 100vh;
+  padding: 40px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* main app container */
+.app {
+  width: 100%;
+  max-width: 1100px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.55));
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: var(--soft-shadow);
+  backdrop-filter: blur(6px) saturate(120%);
+  border: 1px solid rgba(140,28,19,0.06);
+}
+
+/* header */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo {
+  width:48px;height:48px;border-radius:10px;
+  background: linear-gradient(135deg,var(--accent),var(--dark));
+  display:flex;align-items:center;justify-content:center;color:var(--white);
+  font-weight:700; box-shadow: 0 6px 18px rgba(191,67,66,0.18);
+}
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark);
+  letter-spacing: 0.2px;
+}
+
+/* layout columns */
+.grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 22px;
+}
+
+/* form / inputs */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85));
+  border-radius: var(--rounded);
+  padding: 16px;
+  box-shadow: var(--soft-shadow);
+  border: 1px solid rgba(140,28,19,0.04);
+}
+
+.form-group { margin-bottom: 12px; display:flex;flex-direction:column; gap:8px; }
+label { font-size:13px; color: rgba(140,28,19,0.86); font-weight:600; }
+
+input[type="text"], input[type="date"], input[type="number"], select, textarea {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(140,28,19,0.08);
+  background: rgba(255,255,255,0.85);
+  font-size:14px;
+  color: var(--dark);
+  outline: none;
+  transition: box-shadow .18s, transform .06s;
+}
+input:focus, select:focus, textarea:focus {
+  box-shadow: 0 6px 18px rgba(140,28,19,0.08);
+  transform: translateY(-1px);
+}
+
+/* special "add your assingmnet sbelow" banner */
+.add-banner {
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(90deg, var(--muted), rgba(167,138,127,0.86));
+  color: var(--white);
+  padding: 12px;
+  border-radius: 10px;
+  font-weight:700;
+  letter-spacing:0.3px;
+  box-shadow: 0 8px 20px rgba(115,85,81,0.06);
+}
+
+/* upload area */
+.upload-area {
+  border-radius: 10px;
+  padding: 14px;
+  background: linear-gradient(180deg, var(--upload), rgba(115,85,81,0.9));
+  color: var(--white);
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:space-between;
+  border: 1px dashed rgba(255,255,255,0.18);
+  transition: transform .12s;
+}
+.upload-area:hover { transform: translateY(-3px); }
+
+/* primary action buttons (selecting things from the user) */
+.btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  font-weight:700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(191,67,66,0.14);
+  transition: transform .12s, box-shadow .12s;
+}
+.btn:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(191,67,66,0.18); }
+
+/* secondary / subtle */
+.btn-ghost {
+  background: transparent;
+  color: var(--dark);
+  border: 1px solid rgba(140,28,19,0.06);
+}
+
+/* assignments list */
+.assignments {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-bottom: 12px;
+}
+.assignment {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  padding:12px;
+  border-radius:10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
+  border: 1px solid rgba(140,28,19,0.04);
+}
+.assignment .meta { display:flex; gap:10px; align-items:center; }
+.tag {
+  padding:6px 10px;
+  border-radius:8px;
+  font-weight:700;
+  font-size:12px;
+  color: var(--white);
+}
+
+/* tags use palette */
+.tag-class { background: var(--muted); }
+.tag-weight { background: var(--accent); }
+.tag-date { background: var(--dark); }
+
+/* schedule / plan area */
+.plan {
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.plan .day {
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:12px;
+  border-radius:10px;
+  background: rgba(140,28,19,0.03);
+  border: 1px solid rgba(140,28,19,0.03);
+}
+.day .date {
+  min-width:90px;
+  font-weight:700;
+  color: var(--dark);
+}
+
+/* warning "cooked" status */
+.cooked {
+  padding:10px 12px;
+  border-radius:10px;
+  color: var(--white);
+  font-weight:800;
+  display:inline-block;
+}
+.cooked-low { background: linear-gradient(90deg, #bcd6b6, #dcebd8); color: var(--dark); }
+.cooked-medium { background: linear-gradient(90deg, #f7d08f, #f8c281); color: var(--dark); }
+.cooked-high { background: linear-gradient(90deg, var(--accent), var(--dark)); }
+
+/* small utilities */
+.kicker { font-size:12px; color:rgba(140,28,19,0.6); }
+.small { font-size:13px; color:rgba(140,28,19,0.7); }
+.flex { display:flex; gap:8px; align-items:center; }
+
+/* responsive */
+@media (max-width:980px) {
+  .grid { grid-template-columns: 1fr; }
+  body { padding: 28px 14px; }
+}
