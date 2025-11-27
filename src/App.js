@@ -292,39 +292,39 @@ export default function StudyPlanner() {
   const currentCooked = calculateCookedLevel();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-lg shadow-lg p-8">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 to-red-100 p-6">
+      <div className="max-w-full mx-auto px-4">
+        <div className="bg-white rounded-lg shadow-lg p-10">
           <div className="flex items-center gap-3 mb-6">
             <img src="/cooked.jpg" alt="Cooked" className="w-16 h-16 object-cover rounded" />
             <div>
               <h1 className="text-xl font-bold text-gray-800">SURVIVING UBC 101:</h1>
-              <h2 className="text-4xl md:text-6xl font-black text-orange-500 tracking-wider">{typedText}<span className="animate-pulse">|</span></h2>
+              <h2 className="text-6xl md:text-8xl font-black text-orange-500 tracking-wider">{typedText}<span className="animate-pulse">|</span></h2>
             </div>
           </div>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-            <p className="text-sm text-blue-800">
-              Add your assignments below and we'll create a personalized study calendar plus tell you how cooked you are. 🔥
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+            <p className="text-sm text-red-800">
+              Add assignments → Get study schedule → Find out how screwed you are 🔥
             </p>
           </div>
 
           {/* Calendar Upload */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-6">
-            <label className="block text-sm font-medium text-purple-900 mb-2">
-              📤 Upload Your Google Calendar (Optional)
+          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
+            <label className="block text-sm font-medium text-orange-900 mb-2">
+              📤 Got a calendar? Upload it
             </label>
-            <p className="text-xs text-purple-700 mb-3">
-              Upload a .ics file to block out times when you're already busy (classes, work, etc.)
+            <p className="text-xs text-orange-700 mb-3">
+              .ics file so we don't schedule over your classes
             </p>
             <input
               type="file"
               accept=".ics"
               onChange={handleCalendarUpload}
-              className="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700 cursor-pointer"
+              className="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-orange-600 file:text-white hover:file:bg-orange-700 cursor-pointer"
             />
             {uploadedFileName && (
-              <p className="text-sm text-purple-800 mt-2">✓ {uploadedFileName} uploaded ({blockedTimes.length} events blocked)</p>
+              <p className="text-sm text-orange-800 mt-2">✓ {uploadedFileName} uploaded ({blockedTimes.length} events blocked)</p>
             )}
           </div>
 
@@ -333,13 +333,13 @@ export default function StudyPlanner() {
             <input
               type="text"
               placeholder="Assignment name"
-              className="col-span-1 md:col-span-2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="col-span-1 md:col-span-2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
               value={currentAssignment.name}
               onChange={(e) => setCurrentAssignment({...currentAssignment, name: e.target.value})}
             />
             <input
               type="date"
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               value={currentAssignment.deadline}
               onChange={(e) => setCurrentAssignment({...currentAssignment, deadline: e.target.value})}
             />
@@ -349,13 +349,13 @@ export default function StudyPlanner() {
                 placeholder="Weight %"
                 min="0"
                 max="100"
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
                 value={currentAssignment.weight}
                 onChange={(e) => setCurrentAssignment({...currentAssignment, weight: e.target.value})}
               />
               <button
                 onClick={addAssignment}
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
               >
                 <Plus size={20} />
               </button>
@@ -404,10 +404,10 @@ export default function StudyPlanner() {
           {assignments.length > 0 && (
             <button
               onClick={generateICS}
-              className="w-full bg-indigo-600 text-white py-4 rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 font-semibold text-lg"
+              className="w-full bg-orange-600 text-white py-4 rounded-lg hover:bg-orange-700 transition-colors flex items-center justify-center gap-2 font-semibold text-lg"
             >
               <Download size={24} />
-              Generate Study Plan & Download Calendar
+              Make My Schedule
             </button>
           )}
 
@@ -420,7 +420,7 @@ export default function StudyPlanner() {
                   <div key={idx} className={`mb-3 pb-3 ${idx !== schedulePreview.length - 1 ? 'border-b border-gray-200' : ''}`}>
                     {event.type === 'study' ? (
                       <div className="flex items-start gap-3">
-                        <div className="bg-blue-500 text-white rounded px-2 py-1 text-xs font-semibold mt-1">
+                        <div className="bg-red-500 text-white rounded px-2 py-1 text-xs font-semibold mt-1">
                           STUDY
                         </div>
                         <div className="flex-1">
@@ -458,7 +458,7 @@ export default function StudyPlanner() {
         </div>
 
         <div className="mt-6 text-center text-sm text-gray-600">
-          <p>Built for UBC students. Import the .ics file to Google Calendar, Apple Calendar, or Outlook.</p>
+          <p>Made by students, for students. Import to any calendar app.</p>
         </div>
       </div>
     </div>
