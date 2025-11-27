@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, Plus, Download, Trash2, AlertCircle } from 'lucide-react';
 
 export default function StudyPlanner() {
@@ -12,6 +12,21 @@ export default function StudyPlanner() {
   const [schedulePreview, setSchedulePreview] = useState([]);
   const [blockedTimes, setBlockedTimes] = useState([]);
   const [uploadedFileName, setUploadedFileName] = useState('');
+  const [typedText, setTypedText] = useState('');
+
+  useEffect(() => {
+    const text = 'How Cooked Are You?';
+    let i = 0;
+    const timer = setInterval(() => {
+      if (i < text.length) {
+        setTypedText(text.slice(0, i + 1));
+        i++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 100);
+    return () => clearInterval(timer);
+  }, []);
 
   const addAssignment = () => {
     if (currentAssignment.name && currentAssignment.deadline && currentAssignment.weight) {
@@ -281,8 +296,11 @@ export default function StudyPlanner() {
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <div className="flex items-center gap-3 mb-6">
-            <Calendar className="text-blue-600" size={32} />
-            <h1 className="text-3xl font-bold text-gray-800">UBC Study Planner</h1>
+            <img src="/cooked.jpg" alt="Cooked" className="w-16 h-16 object-cover rounded" />
+            <div>
+              <h1 className="text-xl font-bold text-gray-800">SURVIVING UBC 101:</h1>
+              <h2 className="text-4xl md:text-6xl font-black text-orange-500 tracking-wider">{typedText}<span className="animate-pulse">|</span></h2>
+            </div>
           </div>
 
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
