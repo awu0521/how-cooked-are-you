@@ -302,7 +302,7 @@ export default function StudyPlanner() {
   };
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${getBackgroundColor()} p-6 relative overflow-hidden`}>
+    <div className={`min-h-screen bg-gradient-to-br ${getBackgroundColor()} p-2 sm:p-6 relative overflow-hidden`}>
       <div className="absolute inset-0 opacity-10 pointer-events-none -z-10">
         {Array.from({length: 100}).map((_, i) => (
           <img
@@ -318,13 +318,13 @@ export default function StudyPlanner() {
           />
         ))}
       </div>
-      <div className="max-w-full mx-auto px-4">
-        <div className="bg-white rounded-lg shadow-lg p-10">
-          <div className="flex items-start gap-3 mb-6">
-            <img src="/cooked.jpg" alt="Cooked" className="w-12 h-12 object-cover rounded -mt-2.5" />
+      <div className="max-w-7xl mx-auto px-2 sm:px-4">
+        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8 lg:p-10">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 mb-6 text-center sm:text-left">
+            <img src="/cooked.jpg" alt="Cooked" className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded sm:-mt-2.5" />
             <div>
-              <h1 className="text-xl font-bold text-gray-800">SURVIVING UBC 101:</h1>
-              <h2 className="text-6xl md:text-8xl font-black text-orange-500 tracking-tight">{typedText}<span className="animate-pulse font-thin">|</span></h2>
+              <h1 className="text-lg sm:text-xl font-bold text-gray-800">SURVIVING UBC 101:</h1>
+              <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black text-orange-500 tracking-tight">{typedText}<span className="animate-pulse font-thin">|</span></h2>
             </div>
           </div>
 
@@ -354,17 +354,17 @@ export default function StudyPlanner() {
           </div>
 
           {/* Input Form */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <input
               type="text"
               placeholder="Assignment name"
-              className="col-span-1 md:col-span-2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="col-span-1 sm:col-span-2 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm sm:text-base"
               value={currentAssignment.name}
               onChange={(e) => setCurrentAssignment({...currentAssignment, name: e.target.value})}
             />
             <input
               type="date"
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm sm:text-base"
               value={currentAssignment.deadline}
               onChange={(e) => setCurrentAssignment({...currentAssignment, deadline: e.target.value})}
             />
@@ -374,7 +374,7 @@ export default function StudyPlanner() {
                 placeholder="Weight %"
                 min="0"
                 max="100"
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm sm:text-base"
                 value={currentAssignment.weight}
                 onChange={(e) => setCurrentAssignment({...currentAssignment, weight: e.target.value})}
               />
@@ -429,7 +429,7 @@ export default function StudyPlanner() {
           {assignments.length > 0 && (
             <button
               onClick={generateICS}
-              className="w-full bg-orange-600 text-white py-4 rounded-lg hover:bg-orange-700 transition-colors flex items-center justify-center gap-2 font-semibold text-lg"
+              className="w-full bg-orange-600 text-white py-3 sm:py-4 rounded-lg hover:bg-orange-700 transition-colors flex items-center justify-center gap-2 font-semibold text-base sm:text-lg"
             >
               <Download size={24} />
               Make My Schedule
@@ -439,8 +439,8 @@ export default function StudyPlanner() {
           {/* Schedule Preview */}
           {schedulePreview.length > 0 && (
             <div className="mt-6">
-              <h2 className="text-xl font-semibold mb-4 text-gray-800">📅 Your Study Schedule</h2>
-              <div className="bg-gray-50 rounded-lg p-4 max-h-96 overflow-y-auto">
+              <h2 className="text-lg sm:text-xl font-semibold mb-4 text-gray-800">📅 Your Study Schedule</h2>
+              <div className="bg-gray-50 rounded-lg p-3 sm:p-4 max-h-80 sm:max-h-96 overflow-y-auto">
                 {schedulePreview.map((event, idx) => (
                   <div key={idx} className={`mb-3 pb-3 ${idx !== schedulePreview.length - 1 ? 'border-b border-gray-200' : ''}`}>
                     {event.type === 'study' ? (
@@ -450,7 +450,7 @@ export default function StudyPlanner() {
                         </div>
                         <div className="flex-1">
                           <p className="font-medium text-gray-800">{event.assignment}</p>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-xs sm:text-sm text-gray-600">
                             Session {event.session} • {event.start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })} at {event.start.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })} - {event.end.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}
                           </p>
                         </div>
@@ -462,7 +462,7 @@ export default function StudyPlanner() {
                         </div>
                         <div className="flex-1">
                           <p className="font-medium text-gray-800">🚨 {event.assignment}</p>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-xs sm:text-sm text-gray-600">
                             {event.start.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })} by 11:59 PM
                           </p>
                         </div>
