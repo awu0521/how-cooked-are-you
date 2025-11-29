@@ -1,5 +1,20 @@
-## Running the webapp: 
-visit [How Cooked Are You?](howcookedareyou.vercel.app) (or enter: howcookedareyou.vercel.app)
+## Running live webapp: 
+visit [howcookedareyou.vercel.app](https://howcookedareyou.vercel.app) 
+
+## Overview: How Cooked Are You?
+How Cooked Are You? is a web application built for the UBC CS community to calculate how “cooked” a student is based on their upcoming academic workload, but in a fun, chaotic, relatable way. Instead of just telling you you’re doomed… it actually *helps you get uncooked.* 
+
+### What the app does
+Users can enter details about their upcoming assignments, including:
+- Assignment names
+- Weightings
+- Due dates
+- Import their current schedule through an .ics file
+  
+The app then:
+- Generates a study schedule automatically
+- Exports the schedule as an .ics calendar file, ready to import to Google Calendar / Apple Calendar / Outlook
+- Assigns a “How cooked are you?” score
 
 ## Getting Started
 
